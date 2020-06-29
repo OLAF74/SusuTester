@@ -1,0 +1,369 @@
+{
+  "questions": [
+    {
+      "queston": "При каком значении угла β проекция силы P На ось OX равна нулю",
+      "question_img": "img/q1.png",
+      "answers": [
+        {
+          "answer": "β = 45°",
+          "answer_img": null
+        },
+        {
+          "answer": "β = 100°",
+          "answer_img": null
+        },
+        {
+          "answer": "β = 90°",
+          "answer_img": null
+        },
+        {
+          "answer": "β = 0°",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 2
+    },
+    {
+      "queston": "Суммарный момент относительно центра A равен",
+      "question_img": "img/q2.png",
+      "answers": [
+        {
+          "answer": null,
+          "answer_img": "img/a2_1.png"
+        },
+        {
+          "answer": null,
+          "answer_img": "img/a2_2.png"
+        },
+        {
+          "answer": null,
+          "answer_img": "img/a2_3.png"
+        },
+        {
+          "answer": null,
+          "answer_img": "img/a2_4.png"
+        },
+        {
+          "answer": null,
+          "answer_img": "img/a2_5.png"
+        }
+      ],
+      "right_answer_index": 2
+    },
+    {
+      "queston": "Диск радиуса R катиться по горизонтальной поверхности без скольжения. Скорость точки А равна v. Угловая скорость вращения диска равна...",
+      "question_img": "img/q3.png",
+      "answers": [
+        {
+          "answer": "2v/r",
+          "answer_img": null
+        },
+        {
+          "answer": "v/(2r)",
+          "answer_img": null
+        },
+        {
+          "answer": "v/r",
+          "answer_img": null
+        },
+        {
+          "answer": "v/(√2r)",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 1
+    },
+    {
+      "queston": null,
+      "question_img": "img/q4.png",
+      "answers": [
+        {
+          "answer": "7 м/c",
+          "answer_img": null
+        },
+        {
+          "answer": "9.9 м/c",
+          "answer_img": null
+        },
+        {
+          "answer": "3.5 м/c",
+          "answer_img": null
+        },
+        {
+          "answer": "4.9 м/c",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 1
+    },
+    {
+      "queston": null,
+      "question_img": "img/q5.png",
+      "answers": [
+        {
+          "answer": "-M*",
+          "answer_img": null
+        },
+        {
+          "answer": "0",
+          "answer_img": null
+        },
+        {
+          "answer": "M*",
+          "answer_img": null
+        },
+        {
+          "answer": "2M*",
+          "answer_img": null
+        },
+        {
+          "answer": "-2M*",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 1
+    },
+    {
+      "queston": "Чему равна сила натяжения тросса Т, если проскальзывание между тросом и блоком отсутсвует?",
+      "question_img": "img/q6.png",
+      "answers": [
+        {
+          "answer": null,
+          "answer_img": "img/a6_1.png"
+        },
+        {
+          "answer": null,
+          "answer_img": "img/a6_2.png"
+        },
+        {
+          "answer": null,
+          "answer_img": "img/a6_3.png"
+        },
+        {
+          "answer": null,
+          "answer_img": "img/a6_4.png"
+        },
+        {
+          "answer": null,
+          "answer_img": "img/a6_5.png"
+        }
+      ],
+      "right_answer_index": 1
+    },
+    {
+      "queston": "Ускорение точки при увеличении силы, приложенной к ней, в 2 раза...",
+      "question_img": null,
+      "answers": [
+        {
+          "answer": "увеличится в 2 раза",
+          "answer_img": null
+        },
+        {
+          "answer": "не изменится",
+          "answer_img": null
+        },
+        {
+          "answer": "увеличится в 4 раза",
+          "answer_img": null
+        },
+        {
+          "answer": "уменьшиться в 2 раза",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 0
+    },
+    {
+      "queston": "Материальная точка движется в пространстве. Тогда число степеней ее свободы равно..",
+      "question_img": null,
+      "answers": [
+        {
+          "answer": "1",
+          "answer_img": null
+        },
+        {
+          "answer": "0",
+          "answer_img": null
+        },
+        {
+          "answer": "3",
+          "answer_img": null
+        },
+        {
+          "answer": "2",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 2
+    },
+    {
+      "queston": "Стержни AC и BC соединены шарнирами между собой и с неподвижным основанием. Углы между стержнями и основанием - α. К шарнирному болту С подвешен груз весом Q. Усилие в стержне АС по модулю равно...",
+      "question_img": "img/q9.png",
+      "answers": [
+        {
+          "answer": "2Q / cosα",
+          "answer_img": null
+        },
+        {
+          "answer": "Qsinα",
+          "answer_img": null
+        },
+        {
+          "answer": "Q / (2cosα)",
+          "answer_img": null
+        },
+        {
+          "answer": "Q / (2sinα)",
+          "answer_img": null
+        },
+        {
+          "answer": "Q / cosα",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 3
+    },
+    {
+      "queston": "Куда направлено ускорение точки, если движение задано уравнением",
+      "question_img": "img/q10.png",
+      "answers": [
+        {
+          "answer": "параллельно оси Оу",
+          "answer_img": null
+        },
+        {
+          "answer": "перпендикулярно оси Оу",
+          "answer_img": null
+        },
+        {
+          "answer": "перпендикулярно полоскости уОz",
+          "answer_img": null
+        },
+        {
+          "answer": "параллельно плоскости xOz",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 0
+    },
+    {
+      "queston": "Как направлен вектор скорости точки в каждый момент времени?",
+      "question_img": null,
+      "answers": [
+        {
+          "answer": "перпендикульрно касательной к годографу радиуса-вектора точки",
+          "answer_img": null
+        },
+        {
+          "answer": "от центра кривизны траектории",
+          "answer_img": null
+        },
+        {
+          "answer": "к центру кривизны траектории",
+          "answer_img": null
+        },
+        {
+          "answer": "по касательной к траектории точки в сторону движения",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 3
+    },
+    {
+      "queston": "Силы действия и противодействия всегда равны по величине и противоположны по направлению. Какой это закон?",
+      "question_img": null,
+      "answers": [
+        {
+          "answer": "второй закон Ньютона",
+          "answer_img": null
+        },
+        {
+          "answer": "третий закон Ньютона",
+          "answer_img": null
+        },
+        {
+          "answer": "закон всемирного тяготения",
+          "answer_img": null
+        },
+        {
+          "answer": "первый закон Ньютона",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 1
+    },
+    {
+      "queston": "Определить плечо силы F относительно точки K ",
+      "question_img": "img/q13.png",
+      "answers": [
+        {
+          "answer": "плеча нет",
+          "answer_img": null
+        },
+        {
+          "answer": "отрезок OA",
+          "answer_img": null
+        },
+        {
+          "answer": "отрезок OB",
+          "answer_img": null
+        },
+        {
+          "answer": "отрезок OK",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 0
+    },
+    {
+      "queston": "Определить скорость точки К колеса, катящегося без скольжения, если модуль скорости центра равен V",
+      "question_img": "img/q14.png",
+      "answers": [
+        {
+          "answer": "Vr/R",
+          "answer_img": null
+        },
+        {
+          "answer": "VR/(R + r)",
+          "answer_img": null
+        },
+        {
+          "answer": "V2R/r",
+          "answer_img": null
+        },
+        {
+          "answer": "V(R - r) / R",
+          "answer_img": null
+        },
+        {
+          "answer": "Vr/(R + r)",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 3
+    },
+    {
+      "queston": null,
+      "question_img": "img/q15.png",
+      "answers": [
+        {
+          "answer": "10 м/c",
+          "answer_img": null
+        },
+        {
+          "answer": "5.2 м/c",
+          "answer_img": null
+        },
+        {
+          "answer": "20 м/c",
+          "answer_img": null
+        },
+        {
+          "answer": "17.3 м/c",
+          "answer_img": null
+        }
+      ],
+      "right_answer_index": 0
+    }
+  ]
+}
