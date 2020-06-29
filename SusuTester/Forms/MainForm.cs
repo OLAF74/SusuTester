@@ -8,14 +8,69 @@ namespace SusuTester
 {
     public partial class Form1 : Form
     {
-        private Parser parser;
-        private List<QuestionScreen> questionScreens = new List<QuestionScreen>();
-        int currentQuestion = 0;
+        private Parser ParserInstance;
+        private List<QuestionScreen> QuestionScreens = new List<QuestionScreen>();
+        private int CurrentQuestionIndex = 0;
 
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+
+
+        private void ParseQuestons()
+        {
+            OpenFileDialog Filedialog = new OpenFileDialog();
+            Filedialog.Filter = "json|*.json";
+            Filedialog.InitialDirectory = Environment.CurrentDirectory;
+            Filedialog.Title = "Выберите файл с вопросами";
+
+            if (Filedialog.ShowDialog() == DialogResult.OK)
+            {
+                ParserInstance = new Parser(Filedialog.FileName);
+
+                if (ParserInstance.IsQuestionsEmpty())
+                {
+                    MessageBox.Show("Вы точно выбрали правильный файл с вопросами?", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ParseQuestons();
+                }
+                else
+                    LoadQuestions();
+            }
+        }
+
+        private void LoadQuestions()
+        {
+            QuestionsHolder.Controls.Clear();
+            QuestionScreens.Clear();
+            CurrentQuestionIndex = 0;
+
+            for (int i = 0; i < ParserInstance.GetQuestionsCount(); i++)
+                QuestionScreens.Add(new QuestionScreen(ParserInstance.GetQuestions()[i]));
+
+            LoadQuestionsToUI();
+        }
+
+        private void LoadQuestionsToUI(int index = 0)
+        {
+            QuestionsHolder.Controls.Clear();
+            QuestionsHolder.Controls.Add(QuestionScreens[index]);
+            Text = string.Format("Susu Tester [Вопрос {0} из {1}]", index + 1, QuestionScreens.Count);
+
+
+            if (index != 0)
+                GoPrev.Enabled = true;
+            else
+                GoPrev.Enabled = false;
+
+
+            if (index != QuestionScreens.Count - 1)
+                GoNext.Enabled = true;
+            else
+                GoNext.Enabled = false;
+
         }
 
 
@@ -29,45 +84,21 @@ namespace SusuTester
             ParseQuestons();
         }
 
-       
-
-
-        private void ParseQuestons()
-        {
-            OpenFileDialog filedialog = new OpenFileDialog();
-            filedialog.Filter = "json|*.json";
-            filedialog.InitialDirectory = Environment.CurrentDirectory;
-            filedialog.Title = "Выберите файл с вопросами";
-
-            if (filedialog.ShowDialog() == DialogResult.OK)
-            {
-                parser = new Parser(filedialog.FileName);
-
-                if (parser.IsQuestionsEmpty())
-                {
-                    MessageBox.Show("Вы точно выбрали правильный файл с вопросами?", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ParseQuestons();
-                }
-                else
-                    LoadQuestions();
-            }
-        }
-
         private void SendAnswersButton_Click(object sender, EventArgs e)
         {
-            if (parser == null || parser.IsQuestionsEmpty())
+            if (ParserInstance == null || ParserInstance.IsQuestionsEmpty())
                 return;
 
-            int rightAnswers = 0;
-            for (int i = 0; i < questionScreens.Count; i++)
+            int RightAnswersCount = 0;
+            for (int i = 0; i < QuestionScreens.Count; i++)
             {
-                QuestionScreen questionScreen = questionScreens[i];
+                QuestionScreen QuestionScreenInstance = QuestionScreens[i];
 
-                if (questionScreen.IsRightAnswered())
-                    rightAnswers++;
+                if (QuestionScreenInstance.IsRightAnswered())
+                    RightAnswersCount++;
             }
-            double rightAnswersPercentage = rightAnswers / (double)questionScreens.Count * 100;
-            MessageBox.Show(string.Format("Тест пройден, правильных ответов {0} из {1}({2}%)", rightAnswers, questionScreens.Count, Math.Round(rightAnswersPercentage, 2)),
+            double RightAnswersPercentage = RightAnswersCount / (double)QuestionScreens.Count * 100;
+            MessageBox.Show(string.Format("Тест пройден, правильных ответов {0} из {1}({2}%)", RightAnswersCount, QuestionScreens.Count, Math.Round(RightAnswersPercentage, 2)),
                 "",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
@@ -82,56 +113,22 @@ namespace SusuTester
             new AboutForm().ShowDialog();
         }
 
-        private void LoadQuestions()
-        {
-            QuestionsHolder.Controls.Clear();
-            questionScreens.Clear();
-            currentQuestion = 0;
-
-            for (int i = 0; i < parser.GetQuestionsCount(); i++)
-                questionScreens.Add(new QuestionScreen(parser.GetQuestions()[i]));
-
-            LoadQuestionsToUI(0);
-        }
-
-        private void LoadQuestionsToUI(int index)
-        {
-            QuestionsHolder.Controls.Clear();
-            QuestionsHolder.Controls.Add(questionScreens[index]);
-            Text = string.Format("Susu Tester [Вопрос {0} из {1}]", index + 1, questionScreens.Count);
-           
-       
-            if (index != 0)
-                GoPrev.Enabled = true;
-            else
-                GoPrev.Enabled = false;
-
-
-            if (index != questionScreens.Count - 1)
-                GoNext.Enabled = true;
-            else 
-                GoNext.Enabled = false;
-
-        }
-
         private void GoNext_Click(object sender, EventArgs e)
         {
-            if (currentQuestion < questionScreens.Count - 1)
+            if (CurrentQuestionIndex < QuestionScreens.Count - 1)
             {
-                currentQuestion++;
-                LoadQuestionsToUI(currentQuestion);
+                CurrentQuestionIndex++;
+                LoadQuestionsToUI(CurrentQuestionIndex);
             }
         }
 
         private void GoPrev_Click(object sender, EventArgs e)
         {
-            if (currentQuestion > 0)
+            if (CurrentQuestionIndex > 0)
             {
-                currentQuestion--;
-                LoadQuestionsToUI(currentQuestion);
+                CurrentQuestionIndex--;
+                LoadQuestionsToUI(CurrentQuestionIndex);
             }
         }
-
-       
     }
 }

@@ -8,7 +8,7 @@ namespace SusuTester.Json
 {
     class Parser
     {
-        private QuestionsRootModel questionsRoot;
+        private QuestionsRootModel QuestionsRoot;
 
 
         public Parser(string filePath)
@@ -25,10 +25,10 @@ namespace SusuTester.Json
                 //rawString = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(rawString)); //uncomments if you use encrypted file with questions
                 
                 try {
-                    questionsRoot = JsonConvert.DeserializeObject<QuestionsRootModel>(rawString);
+                    QuestionsRoot = JsonConvert.DeserializeObject<QuestionsRootModel>(rawString);
                 }
                 catch (JsonReaderException) {
-                    questionsRoot = null;
+                    QuestionsRoot = null;
                     MessageBox.Show("Ошибка при разборе файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -36,21 +36,21 @@ namespace SusuTester.Json
 
 
         public List<QuestionModel> GetQuestions() {
-            if (questionsRoot != null)
-                return questionsRoot.questions;
+            if (QuestionsRoot != null)
+                return QuestionsRoot.Questions;
 
             return null;
         }
 
         public int GetQuestionsCount() {
-            if (questionsRoot != null && questionsRoot.questions != null)
-                return questionsRoot.questions.Count;
+            if (QuestionsRoot != null && QuestionsRoot.Questions != null)
+                return QuestionsRoot.Questions.Count;
 
             return 0;
         }
 
         public bool IsQuestionsEmpty() {
-            return questionsRoot == null || GetQuestionsCount() == 0;
+            return QuestionsRoot == null || GetQuestionsCount() == 0;
         }
     }
 }

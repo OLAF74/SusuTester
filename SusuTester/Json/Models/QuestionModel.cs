@@ -6,18 +6,18 @@ namespace SusuTester.Json.Models
     public class QuestionModel
     {
         [JsonProperty(PropertyName = "queston")]
-        public string question { get; set; }
+        public string Question { get; set; }
 
 
         [JsonProperty(PropertyName = "question_img")]
-        public string questionImg { get; set; }
+        public string QuestionImg { get; set; }
 
 
         [JsonProperty(PropertyName = "answers")]
-        public List<AnswerModel> answers { get; set; }
+        public List<AnswerModel> Answers { get; set; }
 
 
         [JsonProperty(PropertyName = "right_answer_index")]
-        public int rightAnswerIndex { get; set; }
+        public int RightAnswerIndex { get; set; }
     }
 }

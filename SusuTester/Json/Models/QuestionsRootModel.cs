@@ -6,6 +6,6 @@ namespace SusuTester.Json.Models
     class QuestionsRootModel
     {
         [JsonProperty(PropertyName = "questions")]
-        public List<QuestionModel> questions { get; set; }
+        public List<QuestionModel> Questions { get; set; }
     }
 }

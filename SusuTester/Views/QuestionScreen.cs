@@ -8,27 +8,27 @@ namespace SusuTester
 {
     public partial class QuestionScreen : UserControl
     {
-        private QuestionModel question;
+        private QuestionModel QuestionInstance;
 
 
         public QuestionScreen(QuestionModel question)
         {
             InitializeComponent();
-            this.question = question;
+            this.QuestionInstance = question;
             LoadQuestionToUI();
         }
 
 
         private void LoadQuestionToUI()
         {
-            if (!string.IsNullOrEmpty(question.question))
-                QuestionText.Text = question.question;
+            if (!string.IsNullOrEmpty(QuestionInstance.Question))
+                QuestionText.Text = QuestionInstance.Question;
 
-           if (!string.IsNullOrEmpty(question.questionImg) && File.Exists(question.questionImg))
-                QuestionImage.Image = Image.FromFile(question.questionImg);
+           if (!string.IsNullOrEmpty(QuestionInstance.QuestionImg) && File.Exists(QuestionInstance.QuestionImg))
+                QuestionImage.Image = Image.FromFile(QuestionInstance.QuestionImg);
 
 
-            foreach (AnswerModel answer in question.answers)
+            foreach (AnswerModel answer in QuestionInstance.Answers)
             {
                 RadioButton radioButton = new RadioButton();
                 radioButton.ImageAlign = ContentAlignment.MiddleLeft;
@@ -36,11 +36,11 @@ namespace SusuTester
                 
               
                 
-                if (!string.IsNullOrEmpty(answer.answer))
-                    radioButton.Text = answer.answer;
+                if (!string.IsNullOrEmpty(answer.Answer))
+                    radioButton.Text = answer.Answer;
 
-                if (!string.IsNullOrEmpty(answer.answerImg) && File.Exists(answer.answerImg)) {
-                    Image image = Image.FromFile(answer.answerImg);
+                if (!string.IsNullOrEmpty(answer.AnswerImg) && File.Exists(answer.AnswerImg)) {
+                    Image image = Image.FromFile(answer.AnswerImg);
 
                     float scaleHeight = 200 / (float)image.Height;
                     float scaleWidth = 200 / (float)image.Width;
@@ -71,7 +71,7 @@ namespace SusuTester
                 }
             }
 
-            return question.rightAnswerIndex == answerIndex;
+            return QuestionInstance.RightAnswerIndex == answerIndex;
         }
     }
 }
