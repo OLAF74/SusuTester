@@ -43,19 +43,19 @@ namespace SusuTester
             {
                 parser = new Parser(filedialog.FileName);
 
-                if (parser.isQuestionsEmpty())
+                if (parser.IsQuestionsEmpty())
                 {
                     MessageBox.Show("Вы точно выбрали правильный файл с вопросами?", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ParseQuestons();
                 }
                 else
-                    loadQuestions();
+                    LoadQuestions();
             }
         }
 
         private void SendAnswersButton_Click(object sender, EventArgs e)
         {
-            if (parser == null || parser.isQuestionsEmpty())
+            if (parser == null || parser.IsQuestionsEmpty())
                 return;
 
             int rightAnswers = 0;
@@ -63,7 +63,7 @@ namespace SusuTester
             {
                 QuestionScreen questionScreen = questionScreens[i];
 
-                if (questionScreen.isRightAnswered())
+                if (questionScreen.IsRightAnswered())
                     rightAnswers++;
             }
             double rightAnswersPercentage = rightAnswers / (double)questionScreens.Count * 100;
@@ -82,19 +82,19 @@ namespace SusuTester
             new AboutForm().ShowDialog();
         }
 
-        private void loadQuestions()
+        private void LoadQuestions()
         {
             QuestionsHolder.Controls.Clear();
             questionScreens.Clear();
             currentQuestion = 0;
 
-            for (int i = 0; i < parser.getQuestionsCount(); i++)
-                questionScreens.Add(new QuestionScreen(parser.getQuestions()[i]));
+            for (int i = 0; i < parser.GetQuestionsCount(); i++)
+                questionScreens.Add(new QuestionScreen(parser.GetQuestions()[i]));
 
-            loadQuestionsToUI(0);
+            LoadQuestionsToUI(0);
         }
 
-        private void loadQuestionsToUI(int index)
+        private void LoadQuestionsToUI(int index)
         {
             QuestionsHolder.Controls.Clear();
             QuestionsHolder.Controls.Add(questionScreens[index]);
@@ -119,7 +119,7 @@ namespace SusuTester
             if (currentQuestion < questionScreens.Count - 1)
             {
                 currentQuestion++;
-                loadQuestionsToUI(currentQuestion);
+                LoadQuestionsToUI(currentQuestion);
             }
         }
 
@@ -128,7 +128,7 @@ namespace SusuTester
             if (currentQuestion > 0)
             {
                 currentQuestion--;
-                loadQuestionsToUI(currentQuestion);
+                LoadQuestionsToUI(currentQuestion);
             }
         }
 

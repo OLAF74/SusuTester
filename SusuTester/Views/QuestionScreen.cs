@@ -15,11 +15,11 @@ namespace SusuTester
         {
             InitializeComponent();
             this.question = question;
-            loadQuestionToUI();
+            LoadQuestionToUI();
         }
 
 
-        private void loadQuestionToUI()
+        private void LoadQuestionToUI()
         {
             if (!string.IsNullOrEmpty(question.question))
                 QuestionText.Text = question.question;
@@ -58,7 +58,7 @@ namespace SusuTester
             }
         }
 
-        public bool isRightAnswered()
+        public bool IsRightAnswered()
         {
             int answerIndex = -1;
             for (int i = 0; i < AnswersGroup.Controls.Count; i++)

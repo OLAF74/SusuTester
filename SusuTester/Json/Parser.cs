@@ -35,22 +35,22 @@ namespace SusuTester.Json
         }
 
 
-        public List<QuestionModel> getQuestions() {
+        public List<QuestionModel> GetQuestions() {
             if (questionsRoot != null)
                 return questionsRoot.questions;
 
             return null;
         }
 
-        public int getQuestionsCount() {
+        public int GetQuestionsCount() {
             if (questionsRoot != null && questionsRoot.questions != null)
                 return questionsRoot.questions.Count;
 
             return 0;
         }
 
-        public bool isQuestionsEmpty() {
-            return questionsRoot == null || getQuestionsCount() == 0;
+        public bool IsQuestionsEmpty() {
+            return questionsRoot == null || GetQuestionsCount() == 0;
         }
     }
 }
