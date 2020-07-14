@@ -2,47 +2,77 @@
 using SusuTester.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SusuTester
 {
     public partial class Form1 : Form
     {
+        #region VARS
+
         private Parser ParserInstance;
         private List<QuestionScreen> QuestionScreens = new List<QuestionScreen>();
         private int CurrentQuestionIndex = 0;
+        Configuration Configuration;
+
+        #endregion VARS
 
 
         public Form1()
         {
             InitializeComponent();
+            Configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         }
 
 
-
+        #region LOAD LOGIC
         private void ParseQuestons()
         {
-            OpenFileDialog Filedialog = new OpenFileDialog();
-            Filedialog.Filter = "json|*.json";
-            Filedialog.InitialDirectory = Environment.CurrentDirectory;
-            Filedialog.Title = "Выберите файл с вопросами";
+            string filePath = Configuration.AppSettings.Settings["QuestionsFileDirectory"].Value;
 
-            if (Filedialog.ShowDialog() == DialogResult.OK)
+
+
+            //QuestionsFileDirectory
+            if (string.IsNullOrEmpty(filePath))
             {
-                ParserInstance = new Parser(Filedialog.FileName);
 
-                if (ParserInstance.IsQuestionsEmpty())
+                OpenFileDialog Filedialog = new OpenFileDialog
                 {
-                    MessageBox.Show("Вы точно выбрали правильный файл с вопросами?", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ParseQuestons();
-                }
-                else
-                    LoadQuestions();
+                    Filter = "json|*.json",
+                    InitialDirectory = Environment.CurrentDirectory,
+                    Title = "Выберите файл с вопросами"
+                };
+
+                if (Filedialog.ShowDialog() == DialogResult.OK)
+                    CreateParser(Filedialog.FileName);
+
             }
+            else
+                CreateParser(filePath);
+        }
+
+        private void CreateParser(string path)
+        {
+            ParserInstance = new Parser(path);
+
+            if (ParserInstance.IsQuestionsEmpty())
+            {
+                MessageBox.Show("Вы точно выбрали правильный файл с вопросами?", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ParseQuestons();
+            }
+            else
+                LoadQuestions();
         }
 
         private void LoadQuestions()
         {
+            Configuration.AppSettings.Settings["QuestionsFileDirectory"].Value = ParserInstance.QuestionsFileDirectory;
+            Configuration.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            SendAnswersButton.Enabled = true;
             QuestionsHolder.Controls.Clear();
             QuestionScreens.Clear();
             CurrentQuestionIndex = 0;
@@ -57,7 +87,7 @@ namespace SusuTester
         {
             QuestionsHolder.Controls.Clear();
             QuestionsHolder.Controls.Add(QuestionScreens[index]);
-            Text = string.Format("Susu Tester [Вопрос {0} из {1}]", index + 1, QuestionScreens.Count);
+            Text = $"Susu Tester [Вопрос {index + 1} из {QuestionScreens.Count}]";
 
 
             if (index != 0)
@@ -72,8 +102,9 @@ namespace SusuTester
                 GoNext.Enabled = false;
 
         }
+        #endregion LOAD LOGIC
 
-
+        #region UI
         private void FormShown(object sender, EventArgs e)
         {
             ParseQuestons();
@@ -81,6 +112,9 @@ namespace SusuTester
 
         private void OpenQuestionsMenuItem_Click(object sender, EventArgs e)
         {
+            Configuration.AppSettings.Settings["QuestionsFileDirectory"].Value = null;
+            Configuration.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
             ParseQuestons();
         }
 
@@ -89,23 +123,31 @@ namespace SusuTester
             if (ParserInstance == null || ParserInstance.IsQuestionsEmpty())
                 return;
 
-            int RightAnswersCount = 0;
-            for (int i = 0; i < QuestionScreens.Count; i++)
+            Configuration.AppSettings.Settings["QuestionsFileDirectory"].Value = null;
+            Configuration.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            IEnumerable<QuestionScreen> RightAnswers = QuestionScreens.Where(screen => screen.IsRightAnswered());
+
+            double RightAnswersPercentage = RightAnswers.Count() / (double)QuestionScreens.Count * 100;
+            string resultString = $"Тест пройден, правильных ответов { RightAnswers.Count()} из {QuestionScreens.Count}({Math.Round(RightAnswersPercentage, 2)}%)\nХотите просмотртеь правильные варианты ответов?";
+
+
+
+            if (MessageBox.Show(resultString, "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
-                QuestionScreen QuestionScreenInstance = QuestionScreens[i];
+                foreach (QuestionScreen questionScreen in QuestionScreens)
+                    questionScreen.ShowRightAnswer();
 
-                if (QuestionScreenInstance.IsRightAnswered())
-                    RightAnswersCount++;
+                SendAnswersButton.Enabled = false;
             }
-            double RightAnswersPercentage = RightAnswersCount / (double)QuestionScreens.Count * 100;
-            MessageBox.Show(string.Format("Тест пройден, правильных ответов {0} из {1}({2}%)", RightAnswersCount, QuestionScreens.Count, Math.Round(RightAnswersPercentage, 2)),
-                "",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation);
+            else
+            {
+                Text = "Susu Tester";
+                QuestionsHolder.Controls.Clear();
+                ParseQuestons();
+            }
 
-            Text = "Susu Tester";
-            QuestionsHolder.Controls.Clear();
-            ParseQuestons();
         }
 
         private void AboutMenuItem_Click(object sender, EventArgs e)
@@ -130,5 +172,11 @@ namespace SusuTester
                 LoadQuestionsToUI(CurrentQuestionIndex);
             }
         }
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+        #endregion UI
     }
 }

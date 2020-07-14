@@ -38,16 +38,14 @@
             // 
             // QuestionText
             // 
-            this.QuestionText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.QuestionText.AutoSize = true;
-            this.QuestionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.QuestionText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QuestionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.QuestionText.Location = new System.Drawing.Point(3, 10);
             this.QuestionText.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-            this.QuestionText.MaximumSize = new System.Drawing.Size(700, 0);
             this.QuestionText.Name = "QuestionText";
             this.QuestionText.Padding = new System.Windows.Forms.Padding(10);
-            this.QuestionText.Size = new System.Drawing.Size(694, 37);
+            this.QuestionText.Size = new System.Drawing.Size(694, 52);
             this.QuestionText.TabIndex = 0;
             // 
             // QuestionImage
@@ -55,7 +53,7 @@
             this.QuestionImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.QuestionImage.Location = new System.Drawing.Point(3, 50);
+            this.QuestionImage.Location = new System.Drawing.Point(3, 65);
             this.QuestionImage.Name = "QuestionImage";
             this.QuestionImage.Size = new System.Drawing.Size(694, 154);
             this.QuestionImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -64,14 +62,12 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.QuestionText, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.QuestionImage, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.AnswersGroup, 0, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -88,19 +84,24 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AnswersGroup.AutoScroll = true;
+            this.AnswersGroup.BackColor = System.Drawing.SystemColors.Control;
             this.AnswersGroup.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.AnswersGroup.Location = new System.Drawing.Point(0, 207);
+            this.AnswersGroup.Location = new System.Drawing.Point(0, 222);
             this.AnswersGroup.Margin = new System.Windows.Forms.Padding(0);
             this.AnswersGroup.Name = "AnswersGroup";
-            this.AnswersGroup.Size = new System.Drawing.Size(700, 293);
+            this.AnswersGroup.Size = new System.Drawing.Size(700, 278);
             this.AnswersGroup.TabIndex = 2;
             this.AnswersGroup.WrapContents = false;
             // 
             // QuestionScreen
             // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "QuestionScreen";
             this.Size = new System.Drawing.Size(700, 500);
+            this.Load += new System.EventHandler(this.QuestionScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.QuestionImage)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

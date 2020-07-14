@@ -33,6 +33,7 @@
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenQuestionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.QuestionsHolder = new System.Windows.Forms.Panel();
             this.GoPrev = new System.Windows.Forms.Button();
             this.GoNext = new System.Windows.Forms.Button();
@@ -47,7 +48,7 @@
             this.FileMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(981, 28);
+            this.menu.Size = new System.Drawing.Size(981, 33);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
@@ -55,30 +56,36 @@
             // 
             this.FileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenQuestionsMenuItem,
-            this.AboutMenuItem});
+            this.AboutMenuItem,
+            this.ExitMenuItem});
+            this.FileMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.FileMenuItem.Name = "FileMenuItem";
-            this.FileMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.FileMenuItem.Size = new System.Drawing.Size(79, 29);
             this.FileMenuItem.Text = "Меню";
             // 
             // OpenQuestionsMenuItem
             // 
             this.OpenQuestionsMenuItem.Name = "OpenQuestionsMenuItem";
-            this.OpenQuestionsMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.OpenQuestionsMenuItem.Size = new System.Drawing.Size(336, 30);
             this.OpenQuestionsMenuItem.Text = "Открыть файл с вопросами";
             this.OpenQuestionsMenuItem.Click += new System.EventHandler(this.OpenQuestionsMenuItem_Click);
             // 
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.AboutMenuItem.Size = new System.Drawing.Size(336, 30);
             this.AboutMenuItem.Text = "О программе";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
+            // ExitMenuItem
+            // 
+            this.ExitMenuItem.Name = "ExitMenuItem";
+            this.ExitMenuItem.Size = new System.Drawing.Size(336, 30);
+            this.ExitMenuItem.Text = "Выход";
+            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
+            // 
             // QuestionsHolder
             // 
-            this.QuestionsHolder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.QuestionsHolder.Location = new System.Drawing.Point(0, 31);
             this.QuestionsHolder.Name = "QuestionsHolder";
             this.QuestionsHolder.Size = new System.Drawing.Size(981, 554);
@@ -87,6 +94,7 @@
             // GoPrev
             // 
             this.GoPrev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.GoPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.GoPrev.Location = new System.Drawing.Point(0, 588);
             this.GoPrev.Margin = new System.Windows.Forms.Padding(0);
             this.GoPrev.Name = "GoPrev";
@@ -99,6 +107,7 @@
             // GoNext
             // 
             this.GoNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.GoNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.GoNext.Location = new System.Drawing.Point(769, 588);
             this.GoNext.Margin = new System.Windows.Forms.Padding(0);
             this.GoNext.Name = "GoNext";
@@ -112,6 +121,7 @@
             // 
             this.SendAnswersButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SendAnswersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SendAnswersButton.Location = new System.Drawing.Point(212, 588);
             this.SendAnswersButton.Margin = new System.Windows.Forms.Padding(0);
             this.SendAnswersButton.Name = "SendAnswersButton";
@@ -126,8 +136,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 620);
-            this.Controls.Add(this.SendAnswersButton);
             this.Controls.Add(this.GoNext);
+            this.Controls.Add(this.SendAnswersButton);
             this.Controls.Add(this.GoPrev);
             this.Controls.Add(this.QuestionsHolder);
             this.Controls.Add(this.menu);
@@ -154,6 +164,7 @@
         private System.Windows.Forms.Button GoPrev;
         private System.Windows.Forms.Button GoNext;
         private System.Windows.Forms.Button SendAnswersButton;
+        private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
     }
 }
 
